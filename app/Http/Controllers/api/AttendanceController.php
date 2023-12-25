@@ -64,7 +64,10 @@ class AttendanceController extends Controller
         }
     }
 
-    public function CountAttendance(){
+    public function CountAttendance(Request $request){
+        $id = $request->user();
+        $att = Attendance::where([['user_id','=',$id['id']], ['status','=','1']])->count();
 
+        return response()->json(['data' => $att]);
     }
 }

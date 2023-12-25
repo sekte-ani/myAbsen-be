@@ -27,4 +27,5 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/attendance-in', [AttendanceController::class, 'AttendanceIn']);
     Route::post('/attendance-out', [AttendanceController::class, 'AttendanceOut']);
     Route::get('/attendance-in-check', [AttendanceController::class, 'AttendanceInCheck']);
+    Route::get('/attendance-count', [AttendanceController::class, 'CountAttendance']);
 });
