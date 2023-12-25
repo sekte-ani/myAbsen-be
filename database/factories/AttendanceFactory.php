@@ -21,8 +21,10 @@ class AttendanceFactory extends Factory
             'jam_masuk' => fake()->time,
             'tanggal_keluar' => fake()->date,
             'jam_keluar' => fake()->time,
-            'lat'=>fake()->latitude,
-            'long' => fake()->longitude,
+            'lat-in'=>fake()->latitude,
+            'long-in' => fake()->longitude,
+            'lat-out'=>fake()->latitude,
+            'long-out' => fake()->longitude,
             'status' => fake()->randomElement(['0','1']),
             'user_id'=> rand(2,4)
         ];
