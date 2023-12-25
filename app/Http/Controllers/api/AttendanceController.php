@@ -25,7 +25,7 @@ class AttendanceController extends Controller
 
         Attendance::create($validateData);
 
-        return new MyabsenResource(true, 'success', 200, $validateData);
+        return new MyabsenResource(true, 'insert attendance in success', 200, $validateData);
     }
 
     public function AttendanceInCheck(Request $request){
@@ -38,5 +38,33 @@ class AttendanceController extends Controller
         }else{
             return response()->json(['status'=>true]);
         }
+    }
+
+    public function AttendanceOut(Request $request){
+        try{
+            $validateData = $request->validate([
+                'tanggal_keluar' => 'date|required',
+                'jam_keluar' => 'required',
+                'lat_out' => 'required',
+                'long_out' => 'required'
+            ]);
+
+            $validateData['status'] = '1';
+            $id = $request->user();
+
+            $date = date('Y-m-d');
+
+            Attendance::where([['user_id','=',$id['id']], ['tanggal_masuk','=',$date]])->update($validateData);
+            return new MyabsenResource(true, 'insert attendance out success', 200, $validateData);
+        }catch(\Exception $e){
+            return response()->json([
+                'message' => $e->getMessage(),
+                'status' => 400
+            ], 400);
+        }
+    }
+
+    public function CountAttendance(){
+
     }
 }
