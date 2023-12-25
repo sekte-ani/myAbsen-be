@@ -17,10 +17,10 @@ return new class extends Migration
             $table->time("jam_masuk");
             $table->date("tanggal_keluar")->nullable();
             $table->time("jam_keluar")->nullable();
-            $table->string("lat-in");
-            $table->string('long-in');
-            $table->string("lat-out");
-            $table->string('long-out');
+            $table->string("lat_in");
+            $table->string('long_in');
+            $table->string("lat_out")->nullable();
+            $table->string('long_out')->nullable();
             $table->enum("status", ['0', '1']);
             $table->foreignId('user_id');
             $table->timestamps();
