@@ -17,6 +17,8 @@ return new class extends Migration
             $table->time("jam_masuk");
             $table->date("tanggal_keluar")->nullable();
             $table->time("jam_keluar")->nullable();
+            $table->string("lat");
+            $table->string('long');
             $table->enum("status", ['0', '1']);
             $table->foreignId('user_id');
             $table->timestamps();
