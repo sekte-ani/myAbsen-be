@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\AttendanceController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
-   
-
+    Route::post('/attendance-in', [AttendanceController::class, 'AttendanceIn']);
+    Route::post('/attendance-out', [AttendanceController::class, 'AttendanceOut']);
+    Route::get('/attendance-in-check', [AttendanceController::class, 'AttendanceInCheck']);
+    Route::get('/attendance-count', [AttendanceController::class, 'CountAttendance']);
 });
