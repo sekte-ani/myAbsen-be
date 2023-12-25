@@ -27,4 +27,16 @@ class AttendanceController extends Controller
 
         return new MyabsenResource(true, 'success', 200, $validateData);
     }
+
+    public function AttendanceInCheck(Request $request){
+        $date = date('Y-m-d');
+        $id = $request->user();
+        $att = Attendance::where([['user_id','=',$id['id']], ['tanggal_masuk','=',$date], ['status', '=', '0']])->get();
+
+        if(!count($att)){
+            return response()->json(['status'=> false]);
+        }else{
+            return response()->json(['status'=>true]);
+        }
+    }
 }
