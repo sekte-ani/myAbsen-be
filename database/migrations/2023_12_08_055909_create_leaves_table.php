@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date("tanggal_mulai");
             $table->date("tanggal_berakhir");
             $table->text("alasan");
+            $table->enum('status', ['diterima','tunggu','ditolak'])->default('tunggu');
             $table->foreignId("user_id");
             $table->timestamps();
         });

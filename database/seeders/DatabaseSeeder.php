@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
 
         User::create([
+            'nomor_induk' => '00',
             'name' => 'Admin',
             'email' => 'admin@mail.com',
             'password' => bcrypt('adminkayang098'),

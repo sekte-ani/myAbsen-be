@@ -28,6 +28,13 @@ class AttendanceController extends Controller
         return new MyabsenResource(true, 'insert attendance in success', 200, $validateData);
     }
 
+    public function LatestAttendance(Request $request){
+        $id = $request->user();
+        $data = Attendance::where('user_id', $id['id'])->latest('updated_at')->take(3)->get();
+
+        return new MyabsenResource(true, 'success', 200, $data);
+    }
+
     public function AttendanceInCheck(Request $request){
         $date = date('Y-m-d');
         $id = $request->user();
@@ -69,5 +76,12 @@ class AttendanceController extends Controller
         $att = Attendance::where([['user_id','=',$id['id']], ['status','=','1']])->count();
 
         return response()->json(['data' => $att]);
+    }
+
+    public function AttendanceHistory(Request $request){
+        $id  = $request->user();
+        $data = Attendance::where('user_id', $id['id'])->latest()->get();
+
+        return new MyabsenResource(true, 'success', 200, $data);
     }
 }
