@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\api\AttendanceController;
+use App\Http\Controllers\api\LeaveController;
+use App\Http\Controllers\api\ProfileController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,4 +30,16 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/attendance-out', [AttendanceController::class, 'AttendanceOut']);
     Route::get('/attendance-in-check', [AttendanceController::class, 'AttendanceInCheck']);
     Route::get('/attendance-count', [AttendanceController::class, 'CountAttendance']);
+    Route::get('/attendance-latest', [AttendanceController::class, 'LatestAttendance']);
+    Route::get('/attendance-history', [AttendanceController::class, 'AttendanceHistory']);
+
+
+    // Cuti
+    Route::post('/leave', [LeaveController::class, 'InputLeave']);
+    Route::get('/leave', [LeaveController::class, 'Index']);
+    Route::get('/leave-count', [LeaveController::class, 'CountLeave']);
+
+    // Profile
+    Route::get('profile', [ProfileController::class, 'Index']);
+    Route::post('profile', [ProfileController::class, 'Update']);
 });
