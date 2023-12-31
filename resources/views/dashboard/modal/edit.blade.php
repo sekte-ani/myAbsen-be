@@ -15,19 +15,19 @@
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama</label>
-                        <input type="text" class="form-control" name='name' id="name" placeholder="Masukkan Nama">
+                        <input type="text" class="form-control" name='name' id="name" value="{{ $user->name }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Masukkan Email" class="form-control">
+                        <input type="email" name="email" id="email" value="{{ $user->email }}" class="form-control" required>
                     </div>
                     <div class="mb-3">
                       <label for="phone" class="form-label">No. HP</label>
-                      <input type="text" name="phone" id="phone" placeholder="Masukkan No. HP" class="form-control">
+                      <input type="text" name="phone" id="phone" value="{{ $user->phone }}" class="form-control" required>
                     </div>
                     <div class="mb-3">
                       <label for="address" class="form-label">Alamat</label>
-                      <input type="text" name="address" id="address" placeholder="Masukkan Alamat" class="form-control">
+                      <input type="text" name="address" id="address" value="{{ $user->address }}" class="form-control" required>
                     </div>
                 </div>
                 
