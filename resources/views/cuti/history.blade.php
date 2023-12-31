@@ -39,22 +39,6 @@
 					<td>{{ $leave->status }}</td>
 				</tr>
 				@endforeach
-				{{-- @foreach ($data as $item)
-					<tr>
-						<td>{{ $loop->iteration }}</td>
-						<td>{{ $item->title }}</td>
-						<td><a href="http://127.0.0.1:8000/storage/{{ $item->modul }}"><i class="bi bi-file-earmark-font-fill"></i></a></td>
-						<td>
-							<a href='{{ url('modul/'.$item->id.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
-							
-							<form onsubmit="return confirm('Apakah anda yakin ingin menghapus data?')" class="d-inline" action="{{ url("modul/".$item->id) }}" method="post">
-								@csrf
-								@method('DELETE')
-								<button type="submit" name="submit" class="btn btn-danger btn-sm">Delete</button>
-							</form>
-						</td>
-					</tr>
-				@endforeach --}}
 			</tbody>
 		</table>
 			
