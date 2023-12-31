@@ -13,6 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::get('/login', function(){
+    return view('auth.login');
+});
+
+Route::get('/', function(){
+    return view('dashboard.index');
+})->name('dashboard');
+
+Route::get('/cuti', function(){
+    return view('cuti.index');
+})->name('cuti');
+
+Route::get('/riwayat-cuti', function(){
+    return view('cuti.history');
+})->name('riwayat-cuti');
+Route::get('/detail-cuti', function(){
+    return view('cuti.show');
+})->name('detail-cuti');
+
+Route::post('/logout', function(){
+
 });
