@@ -34,7 +34,7 @@
 				<tr>
 					<td>{{ $loop->iteration }}</td>
 					<td>{{ $leave->tanggal_mulai }}</td>
-					<td>{{ $leave->tanggal_selesai }}</td>
+					<td>{{ $leave->tanggal_berakhir }}</td>
 					<td>{{ $leave->alasan }}</td>
 					<td>{{ $leave->status }}</td>
 				</tr>
