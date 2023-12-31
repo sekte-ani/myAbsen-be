@@ -1,4 +1,4 @@
-@extends('layouts.main', ['title' => 'Cuti', 'page_heading' => 'Data Cuti'])
+@extends('layouts.main', ['title' => 'Absen', 'page_heading' => 'Data Absen'])
 
 @section('content')
 @include('utilities.alert-flash-message')
@@ -7,14 +7,11 @@
 
 	<div class="my-3 p-3 rounded">
 
-		
-		<!-- TOMBOL TAMBAH DATA -->
 		<div class="pb-3 d-flex justify-content-end">
 			<!-- Button trigger modal -->
-			{{-- <button type="button" class="btn btn-success me-2 py-2" data-bs-toggle="modal" data-bs-target="#TambahDataModal">
-				+ Tambah Data
-			</button> --}}
-			<a href="/riwayat-cuti" class="btn btn-warning">Riwayat Cuti</a>
+			<button type="button" class="btn btn-success me-2 py-2">
+				<a href="{{ url('absen/export/excel') }}" style="color: white">Export</a>
+			</button>
 		</div>
 		<!-- Table untuk memanggil data dari database -->
 		<table class="table table-hover">
@@ -22,40 +19,32 @@
 				<tr>
 					{{-- DATANYA SESUAIIN LAGI  NANTI SAMA YANG DIBIKIN --}}
 					<th class="col-md-1">No</th>
-					<th class="col-md-2">Tanggal Mulai</th>
-					<th class="col-md-2">Tanggal Selesai</th>
-					<th class="col-md-2">Alasan</th>
-					<th class="col-md-3">Aksi</th>
+					<th class="col-md-1">Nomor Induk</th>
+					<th class="col-md-1">Nama</th>
+					<th class="col-md-2">Tanggal Masuk</th>
+					<th class="col-md-2">Tanggal Keluar</th>
+					<th class="col-md-2">Jam Masuk</th>
+					<th class="col-md-2">Jam Keluar</th>
+					<th class="col-md-2">Lat In</th>
+					<th class="col-md-2">Long in</th>
+					<th class="col-md-2">Lat Out</th>
+					<th class="col-md-2">Long Out</th>
 				</tr>
 			</thead>
 			<tbody>
-				@if (session()->has('success'))
-					<div class="alert alert-success" role="alert">
-						{{ session('success') }}
-					</div>
-				@endif
-				@foreach ($leaves as $leave)
+				@foreach ($attendances as $attendance)
 				<tr>
 					<td>{{ $loop->iteration }}</td>
-					<td>{{ $leave->tanggal_mulai }}</td>
-					<td>{{ $leave->tanggal_berakhir }}</td>
-					<td>{{ Str::limit($leave->alasan, 20, '...') }}</td>
-					<td>
-					{{-- {{ /url('modul/'.$item->id.'/edit') }} --}}
-						<a href='/detail-cuti/{{ $leave->id }}' class="btn btn-primary btn-sm">Detail</a>
-						{{-- <a href='' class="btn btn-warning btn-sm">Edit</a> --}}
-						
-						<form onsubmit="return confirm('Apakah anda yakin ingin menghapus data?')" class="d-inline" action="{{ url("accept/".$leave->id) }}" method="post">
-							@csrf
-							@method('PUT')
-							<button type="submit" name="submit" class="btn btn-success btn-sm">Terima</button>
-						</form>
-						<form onsubmit="return confirm('Apakah anda yakin ingin menghapus data?')" class="d-inline" action="{{ url("decline/".$leave->id) }}" method="post">
-							@csrf
-							@method('PUT')
-							<button type="submit" name="submit" class="btn btn-danger btn-sm">Tolak</button>
-						</form>
-					</td>
+					<td>{{ $attendance->user->nomor_induk }}</td>
+					<td>{{ $attendance->user->name }}</td>
+					<td>{{ $attendance->tanggal_masuk }}</td>
+					<td>{{ $attendance->tanggal_keluar }}</td>
+					<td>{{ $attendance->jam_masuk }}</td>
+					<td>{{ $attendance->jam_keluar }}</td>
+					<td>{{ $attendance->lat_in }}</td>
+					<td>{{ $attendance->long_in }}</td>
+					<td>{{ $attendance->lat_out }}</td>
+					<td>{{ $attendance->long_out }}</td>
 				</tr>
 				@endforeach
 				{{-- @foreach ($data as $item)

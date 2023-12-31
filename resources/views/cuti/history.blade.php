@@ -30,36 +30,15 @@
 			</thead>
 			<tbody>
                 {{-- CUTI GINI TEH GAUSAH KASIH ASKI LAH, LIAT DOANG --}}
+				@foreach ($leaves as $leave)
 				<tr>
-					<td>1</td>
-					<td>25-12-2003</td>
-					<td>30-12-2003</td>
-					<td>Bapakku Hamil</td>
-					<td>Diterima</td>
+					<td>{{ $loop->iteration }}</td>
+					<td>{{ $leave->tanggal_mulai }}</td>
+					<td>{{ $leave->tanggal_selesai }}</td>
+					<td>{{ $leave->alasan }}</td>
+					<td>{{ $leave->status }}</td>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>25-12-2003</td>
-					<td>30-12-2003</td>
-					<td>Bapakku Hamil</td>
-					<td>Ditolak</td>
-				</tr>
-				{{-- @foreach ($data as $item)
-					<tr>
-						<td>{{ $loop->iteration }}</td>
-						<td>{{ $item->title }}</td>
-						<td><a href="http://127.0.0.1:8000/storage/{{ $item->modul }}"><i class="bi bi-file-earmark-font-fill"></i></a></td>
-						<td>
-							<a href='{{ url('modul/'.$item->id.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
-							
-							<form onsubmit="return confirm('Apakah anda yakin ingin menghapus data?')" class="d-inline" action="{{ url("modul/".$item->id) }}" method="post">
-								@csrf
-								@method('DELETE')
-								<button type="submit" name="submit" class="btn btn-danger btn-sm">Delete</button>
-							</form>
-						</td>
-					</tr>
-				@endforeach --}}
+				@endforeach
 			</tbody>
 		</table>
 			

@@ -20,6 +20,13 @@
 			</a>
 		</li>
 
+		<li class="sidebar-item ">
+			<a href="/absen" class='sidebar-link'>
+				<i class="bi bi-grid-fill"></i>
+				<span>Absen</span>
+			</a>
+		</li>
+
 		{{-- <li class="sidebar-title"><i class="bi bi-menu-button-wide"></i></li> --}}
 		
 		<li class="sidebar-item {{ request()->routeIs('cuti*') || request()->routeIs('riwayat-cuti*') ? 'active' : '' }}">

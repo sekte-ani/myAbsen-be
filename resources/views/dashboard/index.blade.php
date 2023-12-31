@@ -7,9 +7,9 @@
             <div class="card card-stat">
                 <div class="card-body px-4 py-4-5">
                     
-                        <h3 class="ps-2">Aku siapa aku siapa</h3>
+                        <h3 class="ps-2">Total Karyawan</h3>
                         <div class="d-flex align-items-start flex-column p-2 mb-2">
-                            {{-- <p class="fs-1 p-3 rounded fw-bolder text-success">{{ $message }}</p> --}}
+                            <p class="fs-1 p-3 rounded fw-bolder text-success">{{ $employees }}</p>
                         </div>
                     
                 </div>
@@ -19,9 +19,9 @@
             <div class="card card-stat">
                 <div class="card-body px-4 py-4-5">
                     
-                        <h3 class="ps-2">Aku siapa aku siapa</h3>
+                        <h3 class="ps-2">Total Absensi</h3>
                         <div class="d-flex align-items-start flex-column p-2 mb-2">
-                            {{-- <p class="fs-1 p-3 rounded fw-bolder text-danger">{{ $user }}</p> --}}
+                            <p class="fs-1 p-3 rounded fw-bolder text-danger">{{ $presents }}</p>
                         </div>
                     
                 </div>
@@ -39,6 +39,13 @@
 				<h2>Data User</h2>
 			</div>
 			
+			<!-- TOMBOL TAMBAH DATA -->
+		<div class="pb-3 d-flex justify-content-end">
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-success me-2 py-2" data-bs-toggle="modal" data-bs-target="#TambahDataModal">
+				+ Tambah Data
+			</button>
+		</div>
 			
 			<!-- Table untuk memanggil data dari database -->
 			<table class="table">
@@ -49,21 +56,31 @@
 						<th class="col-md-2">Email</th>
 						<th class="col-md-2">Nope</th>
 						<th class="col-md-2">Alamat</th>
+						<th class="col-md-2">Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					{{-- @foreach ($allUser as $item)
+					@foreach ($users as $user)
 						<tr>
 							<td>{{ $loop->iteration }}</td>
-							<td>{{ $item->name }}</td>
-							<td>{{ $item->email }}</td>
-							<td>{{ $item->phone }}</td>
-							<td>{{ $item->address }}</td>
+							<td>{{ $user->name }}</td>
+							<td>{{ $user->email }}</td>
+							<td>{{ $user->phone }}</td>
+							<td>{{ $user->address }}</td>
+							<td>
+								<a href='{{ url('/'.$user->id.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
+
+								<form onsubmit="return confirm('Apakah anda yakin ingin menghapus data?')" class="d-inline" action="{{ url("/".$user->id) }}" method="post">
+									@csrf
+									@method('DELETE')
+									<button type="submit" name="submit" class="btn btn-danger btn-sm">Delete</button>
+								</form>
+							</td>
 						</tr>
-					@endforeach --}}
+					@endforeach
 				</tbody>
 			</table>
-			{{-- {{ $allUser->withQueryString()->links() }} --}}
+			{{ $users->withQueryString()->links() }}
 		</div>
 	</div>
 </section>
@@ -71,6 +88,8 @@
 @endsection
 {{-- Import modal form --}}
 @push('modal')
+@include('dashboard.modal.create')
+{{-- @include('dashboard.modal.edit') --}}
 {{-- @include('dashboard.modal.show') --}}
 @endpush
 
